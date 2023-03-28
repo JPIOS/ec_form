@@ -5,6 +5,7 @@ import '../core/ec_color.dart';
 import '../core/ec_form_config.dart';
 
 /// 组头大标题
+// ignore: must_be_immutable
 class ECFormSectionTitleWidget extends StatelessWidget
     with ListViewCellType<ECFormSectionTitleWidgetVM> {
   ECFormSectionTitleWidget({super.key, ECFormSectionTitleWidgetVM? item}) {

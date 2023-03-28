@@ -22,7 +22,7 @@ class ECCheckBoxList extends StatelessWidget {
   final List<ECCheckCellItem> checks;
   final bool spaceBetween;
 
-  ECCheckBoxList(this.checks, {this.spaceBetween = true});
+  const ECCheckBoxList(this.checks, {super.key, this.spaceBetween = true});
 
   List<Widget> get rows {
     List<Widget> list = [];
@@ -65,6 +65,7 @@ class ECCheckBoxList extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class ECCheckBox extends StatelessWidget {
   bool select;
   String? title;

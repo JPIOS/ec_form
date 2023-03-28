@@ -11,6 +11,7 @@ import 'common/ec_form_title_widget.dart';
 
 /// 点击之后自定义数据（可以跳转等）
 /// 不会收集param
+// ignore: must_be_immutable
 class ECFormInputSelectCustomizeWidget extends StatelessWidget
     with
         ListViewCellType<ECFormInputSelectCustomizeWidgetVM>,
@@ -153,7 +154,7 @@ class ECFormInputSelectCustomizeWidgetVM<Input>
     this.errorString = errorString;
     this.showRedPoint = showRedPoint;
     this.enable = enable;
-    this.padding = padding ?? EdgeInsets.symmetric(horizontal: 16);
+    this.padding = padding ?? const EdgeInsets.symmetric(horizontal: 16);
     selectSubject.add(value);
   }
 

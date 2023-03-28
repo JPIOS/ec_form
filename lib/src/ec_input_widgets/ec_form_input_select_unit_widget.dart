@@ -10,6 +10,7 @@ import 'common/ec_form_mixin_select_alert.dart';
 import 'common/ec_form_title_widget.dart';
 
 /// 单位背景灰色
+// ignore: must_be_immutable
 class ECFormInputSelectUnitWidget extends StatelessWidget
     with
         ListViewCellType<ECFormInputSelectUnitWidgetVM>,
@@ -120,11 +121,7 @@ class ECFormInputSelectUnitWidget extends StatelessWidget
   }
 
   _selectListAlert(BuildContext context) async {
-    if (item.unitSelectList != null && item.unitSelectList!.isNotEmpty) {
-      _alert(context);
-      return;
-    }
-    contentAlert() => _alert(context);
+    _alert(context);
   }
 
   _alert(BuildContext context) {

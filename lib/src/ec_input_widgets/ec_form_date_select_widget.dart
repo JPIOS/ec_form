@@ -9,6 +9,7 @@ import '../core/ec_form_base_widget_vm.dart';
 import 'common/ec_form_title_widget.dart';
 
 /// 选择时间
+// ignore: must_be_immutable
 class ECFormDateSelectWidget extends StatelessWidget
     with ListViewCellType<ECFormDateSelectWidgetVM>, ECFormBaseWidget {
   ECFormDateSelectWidget({super.key});
@@ -46,7 +47,7 @@ class ECFormDateSelectWidget extends StatelessWidget
                         color: item.enable ? ECColor.border : Colors.white,
                         bgColor:
                             item.enable ? Colors.white : ECColor.disInputBg),
-                    padding: EdgeInsets.symmetric(horizontal: 12),
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [

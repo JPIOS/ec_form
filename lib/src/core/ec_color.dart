@@ -46,10 +46,6 @@ class ECColor {
   /// line 颜色
   static Color line = const Color(0xFFDEDEDE);
   static Color yellow = const Color(0xFFFAAD14);
-
-  /// 通过字符串转颜色
-  /// from("#1D2129")
-  /// from("1D2129")
   static Color hex(String hex) {
     if (hex.contains("#")) {
       hex = hex.replaceAll("#", "");

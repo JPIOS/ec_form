@@ -58,7 +58,7 @@ class ECTable extends StatelessWidget {
   final List<ECTableRow> rows;
   final double firstRato;
 
-  ECTable.div({
+  const ECTable.div({
     super.key,
     required this.titles,
     this.headerHeight = 44,

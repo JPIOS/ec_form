@@ -15,7 +15,7 @@ class ECFormSectionSegmentVM with ListViewSectionItemType {
   ECFormSectionSegmentVM({required this.configs})
       : titles = configs.map((e) => e.title).toList() {
     // 默认添加第一个
-    if (configs.length > 0) {
+    if (configs.isNotEmpty) {
       items.addAll(configs[0].items);
     }
   }

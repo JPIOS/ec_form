@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import '../core/ec_color.dart';
 import '../core/ec_table.dart';
 
+// ignore: must_be_immutable
 class ECFormTableCell extends StatelessWidget
     with ListViewCellType<ECFormTableCellVM> {
   ECFormTableCell({super.key});
@@ -34,7 +35,7 @@ class ECFormTableCell extends StatelessWidget
                     ),
             ],
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           ECTable.div(titles: item.titles, rows: item.rows)
         ],
       ),

@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 import '../core/ec_grid_widget.dart';
 
 /// 组头大标题
+// ignore: must_be_immutable
 class ECFormGridViewWidget extends StatelessWidget
     with ListViewCellType<ECFormGridViewWidgetVM> {
+  ECFormGridViewWidget({super.key});
+
   @override
   Widget build(BuildContext context) {
     return ECGradView(
