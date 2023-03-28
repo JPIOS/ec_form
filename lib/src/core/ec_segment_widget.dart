@@ -55,6 +55,7 @@ class ECSegmentConfig {
   }) : bottomWidgetColor = ECColor.main;
 }
 
+// ignore: must_be_immutable
 class ECSegmentWidget extends StatefulWidget {
   /// 配置模型
   late ECSegmentConfig config;
@@ -83,9 +84,6 @@ class ECSegmentWidget extends StatefulWidget {
   /// 点击回调
   final ECSegmentSelectCallback? didSelectIndex;
 
-  /// ["我的","他的"] 如果设置红点 badgeValueList = [0,1],则第二个会有红点，0表示没有
-  List<int>? badgeValueList;
-
   /// 钩子，会主动调用一次didSelectIndex回调
   final Function(Function(int index))? reselect;
 
@@ -106,7 +104,6 @@ class ECSegmentWidget extends StatefulWidget {
       this.reselect,
       ECSegmentConfig? config})
       : config = config ?? ECSegmentConfig(),
-        badgeValueList = badgeValueList ?? [],
         selectStyle = selectStyle ??
             TextStyle(
                 color: ECColor.main, fontSize: 14, fontWeight: FontWeight.w500),
@@ -169,8 +166,8 @@ class _ECSegmentWidgetState extends State<ECSegmentWidget> {
   }
 
   /// bottom
-  Widget _createBottomWidget(int index) {
-    if (!_config.showBottonWidget || index != selectdIndex) return SizedBox();
+  Widget createBottomWidget(int index) {
+    if (!_config.showBottonWidget || index != selectdIndex) return Container();
 
     if (_bottomSinalWidget != null) return _bottomSinalWidget!;
 

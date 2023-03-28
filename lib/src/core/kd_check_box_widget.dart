@@ -65,6 +65,7 @@ class ECCheckBoxList extends StatelessWidget {
   }
 }
 
+// ignore: must_be_immutable
 class ECCheckBox extends StatelessWidget {
   bool select;
   String? title;

@@ -8,6 +8,7 @@ import 'common/ec_form_mixin_select_alert.dart';
 import 'common/ec_form_title_widget.dart';
 
 /// 选择器组件
+// ignore: must_be_immutable
 class ECFormInputSelectWidget extends StatelessWidget
     with
         ListViewCellType<ECFormInputSelectWidgetVM>,
@@ -72,7 +73,7 @@ class ECFormInputSelectWidget extends StatelessWidget
                             : err
                                 ? ECColor.errRed
                                 : ECColor.border),
-                    padding: EdgeInsets.symmetric(horizontal: 12),
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -167,6 +168,7 @@ class ECFormInputSelectWidgetVM<Input>
       this.selectItem,
       this.requestSelectCall,
       EdgeInsets? padding,
+      Object? value,
       bool? showRedPoint}) {
     this.title = title;
     this.ecRequired = ecRequired;

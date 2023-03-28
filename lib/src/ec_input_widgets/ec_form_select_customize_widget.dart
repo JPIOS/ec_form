@@ -154,7 +154,7 @@ class ECFormInputSelectCustomizeWidgetVM<Input>
     this.errorString = errorString;
     this.showRedPoint = showRedPoint;
     this.enable = enable;
-    this.padding = padding ?? EdgeInsets.symmetric(horizontal: 16);
+    this.padding = padding ?? const EdgeInsets.symmetric(horizontal: 16);
     selectSubject.add(value);
   }
 

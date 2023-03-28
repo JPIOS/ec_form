@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 /// 用于控制cell之间的间距
 /// 可设置高度和背景颜色
+// ignore: must_be_immutable
 class ECFormSpaceWidget extends StatelessWidget
     with ListViewCellType<ECFormSpaceWidgetVM> {
   ECFormSpaceWidget({super.key});

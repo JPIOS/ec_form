@@ -7,6 +7,7 @@ import '../core/ec_form_base_widget.dart';
 import '../core/ec_form_base_widget_vm.dart';
 
 /// switch开关组件
+// ignore: must_be_immutable
 class ECFormSwitchWidget extends StatelessWidget
     with ListViewCellType<ECFormSwitchWidgetVM>, ECFormBaseWidget {
   ECFormSwitchWidget({super.key});
@@ -90,7 +91,7 @@ class ECFormSwitchWidgetVM<Input> with ECFormBaseWidgetVM, ListViewItemType {
     this.enable = enable;
     this.value = value;
     this.titleFont = titleFont ?? 16;
-    this.padding = padding ?? EdgeInsets.symmetric(horizontal: 16);
+    this.padding = padding ?? const EdgeInsets.symmetric(horizontal: 16);
     changeStream = BehaviorSubject.seeded(open);
   }
 

@@ -17,6 +17,7 @@ class ECGridCellItem {
 }
 
 /// 用于cell内部嵌套，不可滑动
+// ignore: must_be_immutable
 class ECGradView extends StatelessWidget {
   List<ECGridCellItem> items;
   final int crossAxisCount;

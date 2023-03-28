@@ -5,6 +5,7 @@ import '../core/ec_color.dart';
 import '../core/ec_form_config.dart';
 import '../core/kd_check_box_widget.dart';
 
+// ignore: must_be_immutable
 class ECFormCheckCell extends StatelessWidget
     with ListViewCellType<ECFormCheckCellVM> {
   ECFormCheckCell({super.key});
@@ -76,17 +77,17 @@ class ECFormCheckCell extends StatelessWidget
 }
 
 class ECFormCheckCellVM with ListViewItemType, ECFormBaseWidgetVM {
-  final String? title;
   final String? subTitle;
   final List<ECCheckCellItem> checks;
 
   ECFormCheckCellVM({
     required String paramKey,
     EdgeInsets? padding,
-    this.title,
+    String? title,
     this.subTitle,
     required this.checks,
   }) {
+    this.title = title;
     this.paramKey = paramKey;
     this.padding = padding ??
         EdgeInsets.symmetric(horizontal: ECCormConfig.space, vertical: 20);

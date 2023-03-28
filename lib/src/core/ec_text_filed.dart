@@ -21,10 +21,10 @@ class ECTextFiled {
         enabled: enabled,
         clearButtonMode: OverlayVisibilityMode.editing,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(8)),
+            borderRadius: const BorderRadius.all(Radius.circular(8)),
             border: Border.all(
                 width: 1,
-                color: isError ? ECColor.errRed : Color(0xFFC9CDD4))));
+                color: isError ? ECColor.errRed : const Color(0xFFC9CDD4))));
   }
 
   /// 单行输入，有边框
