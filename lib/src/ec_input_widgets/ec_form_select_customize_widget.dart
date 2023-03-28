@@ -11,6 +11,7 @@ import 'common/ec_form_title_widget.dart';
 
 /// 点击之后自定义数据（可以跳转等）
 /// 不会收集param
+// ignore: must_be_immutable
 class ECFormInputSelectCustomizeWidget extends StatelessWidget
     with
         ListViewCellType<ECFormInputSelectCustomizeWidgetVM>,

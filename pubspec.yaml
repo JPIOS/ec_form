@@ -1,6 +1,6 @@
 name: ec_form
-description: A new Flutter package project.
-version: 0.0.1
+description: 一个flutter表单组件，主要用于处理表单提交业务。
+version: 1.0.0
 homepage:
 
 environment:
@@ -11,9 +11,10 @@ dependencies:
     sdk: flutter
   ec_adapter: ^1.1.0
   date_format: ^2.0.7
-  image_picker: ^0.8.6
-  camera: ^0.10.0+4
   rxdart: ^0.27.7
+  # image_picker: ^0.8.6
+  # camera: ^0.10.0+4
+  
 
 dev_dependencies:
   flutter_test:

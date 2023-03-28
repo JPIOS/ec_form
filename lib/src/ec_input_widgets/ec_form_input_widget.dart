@@ -8,6 +8,7 @@ import '../core/ec_text_filed.dart';
 import 'common/ec_form_title_widget.dart';
 
 /// 输入框
+// ignore: must_be_immutable
 class ECFormInputWidget extends StatelessWidget
     with ListViewCellType<ECFormInputWidgetVM>, ECFormBaseWidget {
   ECFormInputWidget({super.key});

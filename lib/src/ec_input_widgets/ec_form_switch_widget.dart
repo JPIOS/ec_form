@@ -6,7 +6,7 @@ import '../core/ec_color.dart';
 import '../core/ec_form_base_widget.dart';
 import '../core/ec_form_base_widget_vm.dart';
 
-/// 备注
+/// switch开关组件
 class ECFormSwitchWidget extends StatelessWidget
     with ListViewCellType<ECFormSwitchWidgetVM>, ECFormBaseWidget {
   ECFormSwitchWidget({super.key});
