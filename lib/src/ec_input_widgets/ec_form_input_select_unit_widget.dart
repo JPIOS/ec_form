@@ -20,20 +20,12 @@ class ECFormInputSelectUnitWidget extends StatelessWidget
     if (vm != null) item = vm;
   }
 
-  Widget _eWidget(bool isErr) {
-    if (item.errStream.value && item.errorString != null) {
-      return Text(item.errorString!,
-          style: TextStyle(fontSize: 12, color: ECColor.errRed));
-    }
-
-    return Container();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: item.padding,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ECBaseFormTitleWidget(
               title: item.title, showRedPoint: item.visibilityRedPoint),
@@ -100,9 +92,8 @@ class ECFormInputSelectUnitWidget extends StatelessWidget
               )),
             ],
           ),
-          SizedBox(
-              height: item.kErrorHeight,
-              child: errorWidget(item, builder: (err) => _eWidget(err)))
+          // 底部错误提示
+          bottomErrorWidget(item)
         ],
       ),
     );
@@ -147,7 +138,7 @@ class ECFormInputSelectUnitWidgetVM<Input>
       String? value,
       EdgeInsets? padding,
       int? maxLength,
-      double? errorHeight,
+      double errorHeight = 25,
       this.keyboardType,
       bool? showRedPoint}) {
     this.title = title;
@@ -163,7 +154,7 @@ class ECFormInputSelectUnitWidgetVM<Input>
         padding ?? EdgeInsets.symmetric(horizontal: ECCormConfig.space);
     unitSelectSubject = BehaviorSubject.seeded(selectedItem);
     kUnitWidth = unitWidth ?? 100;
-    kErrorHeight = errorHeight ?? 20;
+    kErrorHeight = errorHeight;
     if (value != null) {
       textController.text = value;
     }

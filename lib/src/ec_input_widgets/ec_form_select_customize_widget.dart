@@ -18,14 +18,6 @@ class ECFormInputSelectCustomizeWidget extends StatelessWidget
         ECFormMixinSelectAlert {
   ECFormInputSelectCustomizeWidget({super.key});
 
-  Widget _eWidget(bool isErr) {
-    if (item.errStream.value && item.errorString != null) {
-      return Text(item.errorString!,
-          style: TextStyle(fontSize: 12, color: ECColor.errRed));
-    }
-    return Container();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -77,9 +69,8 @@ class ECFormInputSelectCustomizeWidget extends StatelessWidget
               )),
             ],
           ),
-          SizedBox(
-              height: 20,
-              child: errorWidget(item, builder: (err) => _eWidget(err)))
+          // 底部错误提示
+          bottomErrorWidget(item)
         ],
       ),
     );

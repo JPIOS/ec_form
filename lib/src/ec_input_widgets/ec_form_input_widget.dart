@@ -13,19 +13,6 @@ class ECFormInputWidget extends StatelessWidget
     with ListViewCellType<ECFormInputWidgetVM>, ECFormBaseWidget {
   ECFormInputWidget({super.key});
 
-  Widget _eWidget(bool isErr) {
-    if (item.errStream.value) {
-      return item.errorString == null
-          ? Container()
-          : Text(
-              item.errorString!,
-              style: TextStyle(fontSize: 12, color: ECColor.errRed),
-            );
-    }
-
-    return Container();
-  }
-
   @override
   Widget build(BuildContext context) {
     if (item.value != null) {
@@ -69,11 +56,8 @@ class ECFormInputWidget extends StatelessWidget
                     ],
                   ),
                 ),
-          SizedBox(
-              height: 20,
-              child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: errorWidget(item, builder: (err) => _eWidget(err))))
+          // 底部错误提示
+          bottomErrorWidget(item)
         ],
       ),
     );

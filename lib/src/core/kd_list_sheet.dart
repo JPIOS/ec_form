@@ -59,12 +59,11 @@ class ECListSheet extends StatelessWidget {
         ),
         height: height,
         child: ListView.separated(
-            padding: const EdgeInsets.only(top: 10, bottom: 20),
+            padding: EdgeInsets.only(
+                top: 10, bottom: MediaQuery.of(context).padding.bottom),
             itemBuilder: (context, index) => _listWidget(index),
-            separatorBuilder: (context, index) => Divider(
-                  height: 1,
-                  color: ECColor.border,
-                ),
+            separatorBuilder: (context, index) =>
+                Container(height: 0.5, color: ECColor.border),
             itemCount: list.length + 1));
   }
 

@@ -74,33 +74,11 @@ class ECFormDateSelectWidget extends StatelessWidget
               _foreverWidget(),
             ],
           ),
-          _bottomErrorWidget()
+          // 底部错误提示
+          bottomErrorWidget(item)
         ],
       ),
     );
-  }
-
-  /// 底部错误提示
-  Widget _bottomErrorWidget() {
-    return SizedBox(
-        height: 20,
-        child: Align(
-            alignment: Alignment.centerLeft,
-            child: errorWidget(item, builder: (err) => _eWidget(err))));
-  }
-
-  /// 错误提示
-  Widget _eWidget(bool isErr) {
-    if (item.errStream.value) {
-      return item.errorString == null
-          ? Container()
-          : Text(
-              item.errorString!,
-              style: TextStyle(fontSize: 12, color: ECColor.errRed),
-            );
-    }
-
-    return Container();
   }
 
   /// 长期

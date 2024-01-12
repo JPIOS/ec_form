@@ -1,42 +1,10 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# flutter表单组件
+### 1 通过简单的集成就可以实现输入、选择等各种类型的表单
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
+### 2 通过check可以检查每个必须提交的表单是否有值，没有则底部提示 errorString
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages).
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
-
-## Features
-
-TODO: List what your package can do. Maybe include images, gifs, or videos.
-
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
-
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
-
-```dart
-const like = 'sample';
-```
-
-## Additional information
-
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+### 3 通过getParam可以轻松拿到输入的或着选择等行为产生的值，并按照paramKey作为入参的key获得
+### 每一个表单组成的整个字典
 
 > 案例如下：
 ```

@@ -7,6 +7,8 @@ export 'src/core/ec_form_base_widget_vm.dart';
 export 'src/core/ec_form_base_widget.dart';
 export 'src/core/ec_form_section_footer_header.dart';
 export 'src/core/ec_form_section_segment_vm.dart';
+export 'src/core/ec_form_manager.dart';
+export 'src/core/ec_form_config.dart';
 
 /// input_widget
 export 'src/ec_input_widgets/ec_form_input_widget.dart';

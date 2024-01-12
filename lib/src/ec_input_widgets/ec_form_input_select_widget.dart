@@ -2,7 +2,6 @@ import 'common/ec_form_mixin_select_alert.dart';
 import 'package:ec_adapter/ec_adapter.dart';
 import 'common/ec_form_title_widget.dart';
 import 'package:flutter/material.dart';
-import '../core/ec_form_config.dart';
 import '../core/ec_border.dart';
 import '../core/ec_color.dart';
 import '../../ec_form.dart';
@@ -15,18 +14,6 @@ class ECFormInputSelectWidget extends StatelessWidget
         ECFormBaseWidget,
         ECFormMixinSelectAlert {
   ECFormInputSelectWidget({super.key});
-
-  Widget _eWidget(bool isErr) {
-    if (item.errStream.value) {
-      return item.errorString == null
-          ? Container()
-          : Text(
-              item.errorString!,
-              style: TextStyle(fontSize: 12, color: ECColor.errRed),
-            );
-    }
-    return Container();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,14 +30,13 @@ class ECFormInputSelectWidget extends StatelessWidget
     return Padding(
       padding: item.padding ?? EdgeInsets.zero,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ECBaseFormTitleWidget(
               title: item.title,
               showRedPoint: item.visibilityRedPoint,
               subTitle: item.subTitle),
-          const SizedBox(
-            height: 8,
-          ),
+          const SizedBox(height: 8),
           Row(
             children: [
               Expanded(
@@ -99,9 +85,8 @@ class ECFormInputSelectWidget extends StatelessWidget
               )),
             ],
           ),
-          SizedBox(
-              height: 20,
-              child: errorWidget(item, builder: (err) => _eWidget(err)))
+          // 底部错误提示
+          bottomErrorWidget(item)
         ],
       ),
     );

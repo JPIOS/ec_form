@@ -14,18 +14,6 @@ class ECFormRemarkWidget extends StatelessWidget
     if (vm != null) item = vm;
   }
 
-  Widget _eWidget(bool isErr) {
-    if (item.errStream.value) {
-      return item.errorString == null
-          ? Container()
-          : Text(
-              item.errorString!,
-              style: TextStyle(fontSize: 12, color: ECColor.errRed),
-            );
-    }
-    return Container();
-  }
-
   @override
   Widget build(BuildContext context) {
     if (item.value != null) {
@@ -73,10 +61,8 @@ class ECFormRemarkWidget extends StatelessWidget
                     },
                     style: TextStyle(fontSize: 16, color: ECColor.title),
                   ))),
-          SizedBox(
-            height: 20,
-            child: errorWidget(item, builder: (err) => _eWidget(err)),
-          )
+          // 底部错误提示
+          bottomErrorWidget(item)
         ],
       ),
     );

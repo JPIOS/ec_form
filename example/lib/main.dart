@@ -4,10 +4,9 @@ import 'package:flutter/services.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
-    SystemUiOverlayStyle.light.copyWith(
-      statusBarColor: Colors.transparent,
-    ),
+    SystemUiOverlayStyle.light.copyWith(statusBarColor: Colors.transparent),
   );
+  ECFormManager.setup(horizontalSpace: 16.0, selectColor: Colors.red);
   runApp(const MyApp());
 }
 
@@ -29,7 +28,7 @@ class MyApp extends StatelessWidget {
 class _ECFormDemoPage extends ECFormBasePage {
   _ECFormDemoPageVM vm = _ECFormDemoPageVM();
 
-  _ECFormDemoPage({super.key});
+  _ECFormDemoPage();
 
   @override
   String? get title => "表单提交";
@@ -38,8 +37,9 @@ class _ECFormDemoPage extends ECFormBasePage {
   Widget? get leading => Container();
 
   @override
-  Widget? get bottomWidget =>
-      TextButton(onPressed: vm.commit, child: const Text("提交"));
+  Widget? get bottomWidget => TextButton(
+      onPressed: vm.commit,
+      child: const Text("提交", style: TextStyle(fontSize: 18)));
 
   @override
   ECFormBasePageVM get pageVM => vm;
@@ -74,14 +74,19 @@ class _ECFormDemoPageVM extends ECFormBasePageVM {
       ECFormDateSelectWidgetVM(paramKey: 'endDate', title: "到达时间"),
 
       // 选择
-      ECFormInputSelectWidgetVM(paramKey: 'cardId', title: "车子", selectList: [
-        ECFormInputSelectItem(name: "宝马", value: "475993"),
-        ECFormInputSelectItem(name: "奔驰", value: "976979")
-      ]),
+      ECFormInputSelectWidgetVM(
+          paramKey: 'cardId',
+          title: "车子",
+          errorString: "请选择",
+          selectList: [
+            ECFormInputSelectItem(name: "宝马", value: "475993"),
+            ECFormInputSelectItem(name: "奔驰", value: "976979")
+          ]),
 
       // 选择(带单位)
       ECFormInputSelectUnitWidgetVM(
           paramKey: 'cardWight',
+          errorString: "请选择",
           title: "车子重",
           keyboardType: TextInputType.number,
           selectedItem: ECFormInputSelectItem(name: "吨", value: "1")),
@@ -106,9 +111,6 @@ class _ECFormDemoPageVM extends ECFormBasePageVM {
         height: 100,
         maxLength: 50,
       ),
-
-      // 展示
-      ECFormSectionTitleWidgetVM(title: "大标题")
     ]);
 
     update();

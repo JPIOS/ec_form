@@ -29,6 +29,9 @@ mixin ECFormBaseWidgetVM {
   /// 表单高度
   double? height;
 
+  /// 错误提示高度
+  double errorHeight = 25;
+
   /// 错误stream
   BehaviorSubject<bool> errStream = BehaviorSubject.seeded(false);
 
