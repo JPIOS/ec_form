@@ -1,13 +1,13 @@
+import 'common/ec_form_mixin_select_alert.dart';
 import 'package:ec_adapter/ec_adapter.dart';
+import 'common/ec_form_title_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:rxdart/rxdart.dart';
-import '../../ec_form.dart';
-import '../core/ec_border.dart';
-import '../core/ec_color.dart';
 import '../core/ec_form_config.dart';
 import '../core/ec_text_filed.dart';
-import 'common/ec_form_mixin_select_alert.dart';
-import 'common/ec_form_title_widget.dart';
+import 'package:rxdart/rxdart.dart';
+import '../core/ec_border.dart';
+import '../core/ec_color.dart';
+import '../../ec_form.dart';
 
 /// 单位背景灰色
 // ignore: must_be_immutable
@@ -17,19 +17,13 @@ class ECFormInputSelectUnitWidget extends StatelessWidget
         ECFormBaseWidget,
         ECFormMixinSelectAlert {
   ECFormInputSelectUnitWidget({super.key, ECFormInputSelectUnitWidgetVM? vm}) {
-    if (vm != null) {
-      item = vm;
-    }
+    if (vm != null) item = vm;
   }
 
   Widget _eWidget(bool isErr) {
-    if (item.errStream.value) {
-      return item.errorString == null
-          ? Container()
-          : Text(
-              item.errorString!,
-              style: TextStyle(fontSize: 12, color: ECColor.errRed),
-            );
+    if (item.errStream.value && item.errorString != null) {
+      return Text(item.errorString!,
+          style: TextStyle(fontSize: 12, color: ECColor.errRed));
     }
 
     return Container();
@@ -42,12 +36,8 @@ class ECFormInputSelectUnitWidget extends StatelessWidget
       child: Column(
         children: [
           ECBaseFormTitleWidget(
-            title: item.title,
-            showRedPoint: item.visibilityRedPoint,
-          ),
-          SizedBox(
-            height: item.title == null ? 0 : 8,
-          ),
+              title: item.title, showRedPoint: item.visibilityRedPoint),
+          SizedBox(height: item.title == null ? 0 : 8),
           Row(
             children: [
               Expanded(
@@ -62,12 +52,10 @@ class ECFormInputSelectUnitWidget extends StatelessWidget
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const SizedBox(
-                        width: 4,
-                      ),
+                      const SizedBox(width: 4),
                       Expanded(
                           child: ECTextFiled.aLineInput(
-                              enabled: item.enable,
+                              readOnly: !item.enable,
                               keyboardType: item.keyboardType,
                               onChanged: (p0) {
                                 item.value = p0;
@@ -140,28 +128,6 @@ class ECFormInputSelectUnitWidget extends StatelessWidget
 
 class ECFormInputSelectUnitWidgetVM<Input>
     with ECFormBaseWidgetVM, ListViewItemType {
-  List<ECFormInputSelectItem>? unitSelectList;
-
-  late BehaviorSubject<ECFormInputSelectItem> unitSelectSubject;
-  late TextEditingController textController = TextEditingController();
-
-  /// 选择的单位
-  final Function(ECFormInputSelectItem)? didSelectUnit;
-  double? kUnitWidth;
-
-  /// 是否能选择单位
-  final bool unitCanSelect;
-  late double kErrorHeight;
-  final String? unitParamKey;
-  String? unitNameParamKey;
-  final Function(String)? onChanged;
-
-  /// 键盘类型
-  final TextInputType? keyboardType;
-
-  /// 选中单位
-  ECFormInputSelectItem selectedItem;
-
   ECFormInputSelectUnitWidgetVM(
       {String? title,
       bool ecRequired = true,
@@ -208,6 +174,42 @@ class ECFormInputSelectUnitWidgetVM<Input>
     }
     unitNameParamKey ??= "${unitParamKey}Name";
   }
+
+  /// 单位数组
+  List<ECFormInputSelectItem>? unitSelectList;
+
+  /// 单位选择
+  late BehaviorSubject<ECFormInputSelectItem> unitSelectSubject;
+
+  /// 文本输入控制器
+  late TextEditingController textController = TextEditingController();
+
+  /// 选择的单位
+  final Function(ECFormInputSelectItem)? didSelectUnit;
+
+  /// 单位宽度
+  double? kUnitWidth;
+
+  /// 是否能选择单位
+  final bool unitCanSelect;
+
+  /// 错误提示高度
+  late double kErrorHeight;
+
+  /// 单位参入的 key：针对id
+  final String? unitParamKey;
+
+  /// 单位名字入参的key
+  String? unitNameParamKey;
+
+  /// 文字改动回调
+  final Function(String)? onChanged;
+
+  /// 键盘类型
+  final TextInputType? keyboardType;
+
+  /// 选中单位
+  ECFormInputSelectItem selectedItem;
 
   @override
   ListViewCellType<ListViewItemType> cellBuilder() {

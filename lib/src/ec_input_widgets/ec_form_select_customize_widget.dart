@@ -1,13 +1,12 @@
+import 'common/ec_form_mixin_select_alert.dart';
+import '../core/ec_form_base_widget_vm.dart';
 import 'package:ec_adapter/ec_adapter.dart';
+import 'common/ec_form_title_widget.dart';
+import '../core/ec_form_base_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:rxdart/subjects.dart';
 import '../core/ec_border.dart';
 import '../core/ec_color.dart';
-import '../core/ec_dispose_less_element.dart';
-import '../core/ec_form_base_widget.dart';
-import '../core/ec_form_base_widget_vm.dart';
-import 'common/ec_form_mixin_select_alert.dart';
-import 'common/ec_form_title_widget.dart';
 
 /// 点击之后自定义数据（可以跳转等）
 /// 不会收集param
@@ -19,23 +18,11 @@ class ECFormInputSelectCustomizeWidget extends StatelessWidget
         ECFormMixinSelectAlert {
   ECFormInputSelectCustomizeWidget({super.key});
 
-  @override
-  StatelessElement createElement() {
-    return ECDisposeElement(
-      this,
-    );
-  }
-
   Widget _eWidget(bool isErr) {
-    if (item.errStream.value) {
-      return item.errorString == null
-          ? Container()
-          : Text(
-              item.errorString!,
-              style: TextStyle(fontSize: 12, color: ECColor.errRed),
-            );
+    if (item.errStream.value && item.errorString != null) {
+      return Text(item.errorString!,
+          style: TextStyle(fontSize: 12, color: ECColor.errRed));
     }
-
     return Container();
   }
 
@@ -81,16 +68,7 @@ class ECFormInputSelectCustomizeWidget extends StatelessWidget
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Expanded(child: _valueWidget()),
-                          Visibility(
-                            visible: item.enable,
-                            child: Container(
-                                padding: const EdgeInsets.only(left: 30),
-                                child: Icon(
-                                  Icons.arrow_drop_down_outlined,
-                                  color: ECColor.place,
-                                  size: 16,
-                                )),
-                          ),
+                          _dropDownIcon(),
                         ],
                       ),
                     ),
@@ -104,6 +82,16 @@ class ECFormInputSelectCustomizeWidget extends StatelessWidget
               child: errorWidget(item, builder: (err) => _eWidget(err)))
         ],
       ),
+    );
+  }
+
+  Visibility _dropDownIcon() {
+    return Visibility(
+      visible: item.enable,
+      child: Container(
+          padding: const EdgeInsets.only(left: 30),
+          child: Icon(Icons.arrow_drop_down_outlined,
+              color: ECColor.place, size: 16)),
     );
   }
 
@@ -132,7 +120,11 @@ class ECFormInputSelectCustomizeWidgetVM<Input>
     with ECFormBaseWidgetVM, ListViewItemType {
   /// 选中信息
   String? subTitle;
+
+  /// 选中的订阅
   BehaviorSubject<String?> selectSubject = BehaviorSubject.seeded(null);
+
+  /// 选中的回调
   final Function(ECFormInputSelectCustomizeWidgetVM)? didClick;
 
   ECFormInputSelectCustomizeWidgetVM(

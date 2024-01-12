@@ -1,10 +1,10 @@
-import 'package:ec_adapter/ec_adapter.dart';
-import 'package:flutter/material.dart';
-import '../core/ec_color.dart';
-import '../core/ec_form_base_widget.dart';
 import '../core/ec_form_base_widget_vm.dart';
-import '../core/ec_form_config.dart';
+import 'package:ec_adapter/ec_adapter.dart';
 import 'common/ec_form_title_widget.dart';
+import '../core/ec_form_base_widget.dart';
+import 'package:flutter/material.dart';
+import '../core/ec_form_config.dart';
+import '../core/ec_color.dart';
 
 /// 备注
 // ignore: must_be_immutable

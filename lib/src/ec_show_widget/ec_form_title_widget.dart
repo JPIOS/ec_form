@@ -1,9 +1,9 @@
 import 'package:ec_adapter/ec_adapter.dart';
 import 'package:flutter/material.dart';
-import '../../ec_form.dart';
+import '../core/ec_form_config.dart';
 import '../core/ec_border.dart';
 import '../core/ec_color.dart';
-import '../core/ec_form_config.dart';
+import '../../ec_form.dart';
 
 /// 包含以下几种
 /// 文字 -右标题-右箭头
@@ -18,9 +18,7 @@ import '../core/ec_form_config.dart';
 class ECFormTitleWidget extends StatelessWidget
     with ListViewCellType<ECFormTitleWidgetVM> {
   ECFormTitleWidget({super.key, ECFormTitleWidgetVM? item}) {
-    if (item != null) {
-      this.item = item;
-    }
+    if (item != null) this.item = item;
   }
 
   @override
@@ -37,30 +35,19 @@ class ECFormTitleWidget extends StatelessWidget
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(
-                  item.title,
-                  style: TextStyle(
-                      color: item.titleColor,
-                      fontSize: item.titleFont,
-                      fontWeight: item.fontWeight),
-                ),
-                SizedBox(
-                  width: 15,
-                  height: item.maxHeight,
-                ),
-                // subtitle
+                Text(item.title,
+                    style: TextStyle(
+                        color: item.titleColor,
+                        fontSize: item.titleFont,
+                        fontWeight: item.fontWeight)),
+                SizedBox(width: 15, height: item.maxHeight),
                 _subtitleWidget,
-
                 _subIcon,
-                // arrow
                 _space(item.showArrowRight),
                 Visibility(
                     visible: item.showArrowRight,
-                    child: Icon(
-                      Icons.arrow_forward_ios_outlined,
-                      size: 16,
-                      color: ECColor.subTitle,
-                    )),
+                    child: Icon(Icons.arrow_forward_ios_outlined,
+                        size: 16, color: ECColor.subTitle)),
               ]),
         ),
       ),
@@ -79,26 +66,17 @@ class ECFormTitleWidget extends StatelessWidget
       ? Flexible(
           fit: FlexFit.tight,
           child: Text(
-            item.subTitleCallBack != null
-                ? item.subTitleCallBack!()
-                : item.subTitle ?? "",
-            overflow: item.limitLength ? null : TextOverflow.ellipsis,
-            textAlign: TextAlign.end,
-            style: TextStyle(
-                fontSize: item.subTitleFont, color: item.subTitleColor),
-          ),
-        )
-      : Expanded(
-          child: Container(),
-        );
+              item.subTitleCallBack != null
+                  ? item.subTitleCallBack!()
+                  : item.subTitle ?? "",
+              overflow: item.limitLength ? null : TextOverflow.ellipsis,
+              textAlign: TextAlign.end,
+              style: TextStyle(
+                  fontSize: item.subTitleFont, color: item.subTitleColor)))
+      : Expanded(child: Container());
 
   Widget _space(bool visible) {
-    return Visibility(
-      visible: visible,
-      child: const SizedBox(
-        width: 4,
-      ),
-    );
+    return Visibility(visible: visible, child: const SizedBox(width: 4));
   }
 }
 

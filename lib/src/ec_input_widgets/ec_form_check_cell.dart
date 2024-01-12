@@ -1,9 +1,9 @@
 import 'package:ec_adapter/ec_adapter.dart';
+import '../core/kd_check_box_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:ec_form/ec_form.dart';
-import '../core/ec_color.dart';
 import '../core/ec_form_config.dart';
-import '../core/kd_check_box_widget.dart';
+import '../core/ec_color.dart';
 
 // ignore: must_be_immutable
 class ECFormCheckCell extends StatelessWidget
@@ -77,9 +77,6 @@ class ECFormCheckCell extends StatelessWidget
 }
 
 class ECFormCheckCellVM with ListViewItemType, ECFormBaseWidgetVM {
-  final String? subTitle;
-  final List<ECCheckCellItem> checks;
-
   ECFormCheckCellVM({
     required String paramKey,
     EdgeInsets? padding,
@@ -92,6 +89,12 @@ class ECFormCheckCellVM with ListViewItemType, ECFormBaseWidgetVM {
     this.padding = padding ??
         EdgeInsets.symmetric(horizontal: ECCormConfig.space, vertical: 20);
   }
+
+  /// 子标题
+  final String? subTitle;
+
+  /// check模型
+  final List<ECCheckCellItem> checks;
 
   @override
   ListViewCellType<ListViewItemType> cellBuilder() => ECFormCheckCell();

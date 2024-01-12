@@ -25,9 +25,17 @@ mixin ECFormShowItemVM {
   /// 子标题
   /// row: 子标题-子图标-右箭头
   String? subTitle;
+
+  /// 子标题的字体
   double subTitleFont = 16;
+
+  /// 子标题的颜色
   Color subTitleColor = const Color(0xFF4E5969);
+
+  /// 右边的icon
   Image? subIcon;
+
+  /// 是否显示右边的箭头
   bool showArrowRight = false;
 
   /// 底部设置
@@ -36,18 +44,13 @@ mixin ECFormShowItemVM {
   bool isBLine = true;
   double lineHorMargin = 0;
 
-  /// 如果这这个设置非空，subIcon和subTitle将不会显示
-  /// 但是不会影响showArrowRight
-  // Widget? rightWidget;
-
-  /// router
+  /// 路由名字，用于AOP设计跳转
   String? routerName;
 
-  // /// 创建cell方法
-  // Widget cellBuilder();
   //从后台取数据的key
   String? dataKey;
 
+  /// 是否有自标题
   bool get hasSubtitle => subTitle != null && subTitle!.isNotEmpty;
 
   /// 边距设置

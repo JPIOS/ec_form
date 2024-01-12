@@ -1,11 +1,11 @@
+import 'common/ec_form_mixin_select_alert.dart';
 import 'package:ec_adapter/ec_adapter.dart';
+import 'common/ec_form_title_widget.dart';
 import 'package:flutter/material.dart';
-import '../../ec_form.dart';
+import '../core/ec_form_config.dart';
 import '../core/ec_border.dart';
 import '../core/ec_color.dart';
-import '../core/ec_form_config.dart';
-import 'common/ec_form_mixin_select_alert.dart';
-import 'common/ec_form_title_widget.dart';
+import '../../ec_form.dart';
 
 /// 选择器组件
 // ignore: must_be_immutable
@@ -59,8 +59,6 @@ class ECFormInputSelectWidget extends StatelessWidget
                 builder: (err) => GestureDetector(
                   onTap: () {
                     if (!item.enable) return;
-                    // if (item.selectList != null &&
-                    //     item.selectList!.isNotEmpty) {  }
                     _selectListAlert(context);
                   },
                   child: Container(

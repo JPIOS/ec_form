@@ -25,13 +25,12 @@ class ECBaseFormTitleWidget extends StatelessWidget {
             SizedBox(
               width: subTitle == null ? 0 : 4,
             ),
-            subTitle == null
-                ? Container()
-                : Expanded(
-                    child: Text(
-                    subTitle!,
-                    style: TextStyle(fontSize: 12, color: ECColor.place),
-                  ))
+            if (subTitle != null)
+              Expanded(
+                  child: Text(
+                subTitle!,
+                style: TextStyle(fontSize: 12, color: ECColor.place),
+              ))
           ],
         ));
   }

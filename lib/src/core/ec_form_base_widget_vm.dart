@@ -3,7 +3,6 @@ import 'package:rxdart/rxdart.dart';
 
 typedef ECFormOutCall<T> = bool Function(T out);
 typedef ECFormValueCall<T> = Widget Function(T out);
-// typedef ModelBuilder<T> = T Function(Map<String, dynamic> map);
 
 /// base共用字段
 mixin ECFormBaseWidgetVM {

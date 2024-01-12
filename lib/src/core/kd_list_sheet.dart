@@ -1,19 +1,8 @@
 import 'package:flutter/material.dart';
-import 'dart:math';
 import 'ec_color.dart';
+import 'dart:math';
 
 class ECListSheet extends StatelessWidget {
-  // final Widget? bottomWidget;
-  final String? cancle;
-  final List<String> list;
-  final Color textColor;
-  final Color selectTextColor;
-  final String? selectValue;
-
-  /// 如果有cancle 则-1表示点击取消
-  final Function(int) indexSelect;
-  final BuildContext context;
-
   /// list颜色是主题色
   /// 有一个取消按钮
   ECListSheet(
@@ -25,6 +14,25 @@ class ECListSheet extends StatelessWidget {
   })  : textColor = ECColor.main,
         selectTextColor = ECColor.main,
         selectValue = null;
+
+  /// 取消按钮的文字
+  final String? cancle;
+
+  /// 展示列表
+  final List<String> list;
+
+  /// 文字颜色
+  final Color textColor;
+
+  /// 选中文字颜色
+  final Color selectTextColor;
+
+  /// 选中的值
+  final String? selectValue;
+
+  /// 如果有cancle 则-1表示点击取消
+  final Function(int) indexSelect;
+  final BuildContext context;
 
   ECListSheet.select(
     this.context, {

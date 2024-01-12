@@ -92,24 +92,28 @@ class ECSegmentWidget extends StatefulWidget {
   // 构造方法
   ECSegmentWidget(this.titles,
       {Key? key,
-      this.height = 44.0,
-      this.bottomWidget,
-      this.defaultSelectIndex = 0,
-      List<int>? badgeValueList,
-      TextStyle? selectStyle,
-      this.normalStyle = const TextStyle(
-          color: Color(0xFF4E5969), fontSize: 14, fontWeight: FontWeight.w400),
-      this.didSelectIndex,
-      this.selectIndex,
       this.reselect,
-      ECSegmentConfig? config})
+      this.selectIndex,
+      this.bottomWidget,
+      this.height = 44.0,
+      this.didSelectIndex,
+      TextStyle? selectStyle,
+      ECSegmentConfig? config,
+      List<int>? badgeValueList,
+      this.defaultSelectIndex = 0,
+      this.normalStyle = const TextStyle(
+        color: Color(0xFF4E5969),
+        fontSize: 14,
+        fontWeight: FontWeight.w400,
+      )})
       : config = config ?? ECSegmentConfig(),
         selectStyle = selectStyle ??
             TextStyle(
-                color: ECColor.main, fontSize: 14, fontWeight: FontWeight.w500),
-        super(key: key) {
-    // segmentReset
-  }
+              color: ECColor.main,
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+            ),
+        super(key: key);
 
   @override
   // ignore: no_logic_in_create_state
@@ -165,37 +169,10 @@ class _ECSegmentWidgetState extends State<ECSegmentWidget> {
     return _config.style == ECSegmentStyle.divide ? 0 : _config.itemSpace;
   }
 
-  /// bottom
-  Widget createBottomWidget(int index) {
-    if (!_config.showBottonWidget || index != selectdIndex) return Container();
-
-    if (_bottomSinalWidget != null) return _bottomSinalWidget!;
-
-    Widget temp;
-    if (widget.bottomWidget != null) {
-      temp = widget.bottomWidget!();
-    } else {
-      temp = Container(
-          height: _config.bottomWidgetHeight,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(_config.bottomWidgetRadiu),
-              color: _config.bottomWidgetColor));
-    }
-
-    _bottomSinalWidget = Container(
-      margin: EdgeInsets.only(top: _config.bottonWidgetSpace),
-      child: temp,
-    );
-    return _bottomSinalWidget!;
-  }
-
   Widget itemWidget(String title, int index) {
     return GestureDetector(
         onTap: () {
-          if (widget.didSelectIndex != null) {
-            widget.didSelectIndex!(index);
-          }
-
+          widget.didSelectIndex?.call(index);
           setState(() {
             selectdIndex = index;
           });

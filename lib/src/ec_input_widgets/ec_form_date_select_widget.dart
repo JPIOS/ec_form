@@ -1,12 +1,12 @@
 import 'package:date_format/date_format.dart';
+import '../core/ec_form_base_widget_vm.dart';
 import 'package:ec_adapter/ec_adapter.dart';
+import '../core/ec_form_base_widget.dart';
+import 'common/ec_form_title_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
 import '../core/ec_border.dart';
 import '../core/ec_color.dart';
-import '../core/ec_form_base_widget.dart';
-import '../core/ec_form_base_widget_vm.dart';
-import 'common/ec_form_title_widget.dart';
 
 /// 选择时间
 // ignore: must_be_immutable
@@ -29,9 +29,7 @@ class ECFormDateSelectWidget extends StatelessWidget
             title: item.title,
             showRedPoint: item.visibilityRedPoint,
           ),
-          const SizedBox(
-            height: 8,
-          ),
+          const SizedBox(height: 8),
           Row(
             children: [
               Expanded(
@@ -76,16 +74,22 @@ class ECFormDateSelectWidget extends StatelessWidget
               _foreverWidget(),
             ],
           ),
-          SizedBox(
-              height: 20,
-              child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: errorWidget(item, builder: (err) => _eWidget(err))))
+          _bottomErrorWidget()
         ],
       ),
     );
   }
 
+  /// 底部错误提示
+  Widget _bottomErrorWidget() {
+    return SizedBox(
+        height: 20,
+        child: Align(
+            alignment: Alignment.centerLeft,
+            child: errorWidget(item, builder: (err) => _eWidget(err))));
+  }
+
+  /// 错误提示
   Widget _eWidget(bool isErr) {
     if (item.errStream.value) {
       return item.errorString == null
@@ -149,10 +153,7 @@ class ECFormDateSelectWidget extends StatelessWidget
     if (item.value != null && item.value is String) {
       try {
         nDate = DateTime.parse(item.value as String);
-        // ignore: empty_catches
       } catch (e) {}
-
-      /// 如果当前时间大于最大时间或者小于最小时间，会出问题
     }
     DateTime? result = await showDatePicker(
         context: context,

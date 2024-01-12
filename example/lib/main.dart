@@ -56,16 +56,23 @@ class _ECFormDemoPageVM extends ECFormBasePageVM {
     datas.addAll([
       // 输入
       ECFormInputWidgetVM(
-          paramKey: 'name', value: "不可修改名字", title: '名字', enable: false),
+        paramKey: 'name',
+        value: "不可修改名字",
+        title: '名字',
+        enable: false,
+      ),
+
       ECFormInputWidgetVM(
         paramKey: 'name1',
         title: '名字',
         checkCall: (out) => out.length >= 2,
         errorString: "至少输入2个字",
       ),
+
       // 日期
       ECFormDateSelectWidgetVM(paramKey: 'startDate', title: "出发时间"),
       ECFormDateSelectWidgetVM(paramKey: 'endDate', title: "到达时间"),
+
       // 选择
       ECFormInputSelectWidgetVM(paramKey: 'cardId', title: "车子", selectList: [
         ECFormInputSelectItem(name: "宝马", value: "475993"),
@@ -74,25 +81,23 @@ class _ECFormDemoPageVM extends ECFormBasePageVM {
 
       // 选择(带单位)
       ECFormInputSelectUnitWidgetVM(
-        paramKey: 'cardWight',
-        title: "车子重",
-        keyboardType: TextInputType.number,
-        selectedItem: ECFormInputSelectItem(name: "吨", value: "1"),
-      ),
+          paramKey: 'cardWight',
+          title: "车子重",
+          keyboardType: TextInputType.number,
+          selectedItem: ECFormInputSelectItem(name: "吨", value: "1")),
 
       // 选择(带可选择单位)
       ECFormInputSelectUnitWidgetVM(
-        paramKey: 'cardWight1',
-        unitParamKey: "unitCode",
-        title: "重量",
-        selectedItem: ECFormInputSelectItem(name: "吨", value: "1"),
-        unitCanSelect: true,
-        keyboardType: TextInputType.number,
-        unitSelectList: [
-          ECFormInputSelectItem(name: "吨", value: "1"),
-          ECFormInputSelectItem(name: "千克", value: "2")
-        ],
-      ),
+          paramKey: 'cardWight1',
+          unitParamKey: "unitCode",
+          title: "重量",
+          selectedItem: ECFormInputSelectItem(name: "吨", value: "1"),
+          unitCanSelect: true,
+          keyboardType: TextInputType.number,
+          unitSelectList: [
+            ECFormInputSelectItem(name: "吨", value: "1"),
+            ECFormInputSelectItem(name: "千克", value: "2")
+          ]),
 
       // 备注
       ECFormRemarkWidgetVM(
@@ -101,8 +106,8 @@ class _ECFormDemoPageVM extends ECFormBasePageVM {
         height: 100,
         maxLength: 50,
       ),
-      // 展示
 
+      // 展示
       ECFormSectionTitleWidgetVM(title: "大标题")
     ]);
 
@@ -110,11 +115,12 @@ class _ECFormDemoPageVM extends ECFormBasePageVM {
   }
 
   commit() {
+    // 如果有必选的参数没有值则底部出现红色提示 errorString
     if (!check()) return;
 
     // 收集的参数param
     Map<String, dynamic> param = getParam();
 
-    print("收集的参数: ${param.toString()}");
+    debugPrint("收集的参数: ${param.toString()}");
   }
 }

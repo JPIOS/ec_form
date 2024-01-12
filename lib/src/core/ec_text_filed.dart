@@ -11,14 +11,14 @@ class ECTextFiled {
     Function(String)? onChanged,
     bool isError = false,
     TextStyle? style,
-    bool? enabled,
+    bool readOnly = false,
   }) {
     return aLineInput(
         prefix: prefix,
         controller: controller,
         onChanged: onChanged,
         style: style,
-        enabled: enabled,
+        readOnly: readOnly,
         clearButtonMode: OverlayVisibilityMode.editing,
         decoration: BoxDecoration(
             borderRadius: const BorderRadius.all(Radius.circular(8)),
@@ -38,7 +38,7 @@ class ECTextFiled {
     TextStyle? style,
     int? maxLength,
     double? height,
-    bool? enabled,
+    bool readOnly = true,
   }) {
     return aLineInput(
         controller: controller,
@@ -49,7 +49,7 @@ class ECTextFiled {
         maxLength: maxLength,
         height: height,
         keyboardType: keyboardType,
-        enabled: enabled,
+        readOnly: readOnly,
         decoration: BoxDecoration(
             borderRadius: const BorderRadius.all(Radius.circular(8)),
             border: Border.all(
@@ -74,7 +74,7 @@ class ECTextFiled {
       Key? key,
       double? height,
       int maxLines = 1,
-      bool? enabled}) {
+      bool readOnly = false}) {
     return SizedBox(
       height: height ?? 57,
       child: CupertinoTextField(
@@ -88,9 +88,7 @@ class ECTextFiled {
         style: style ?? const TextStyle(fontSize: 16),
         onChanged: onChanged,
         obscureText: obscureText,
-        enabled: enabled,
-
-        // padding: EdgeInsets.all(16),
+        readOnly: readOnly,
         placeholderStyle:
             placeholderStyle ?? TextStyle(color: ECColor.place, fontSize: 16),
         keyboardType: keyboardType,

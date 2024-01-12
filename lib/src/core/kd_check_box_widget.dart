@@ -4,18 +4,29 @@ import 'ec_color.dart';
 
 // 一排多个check，单选
 class ECCheckCellItem {
-  final String title;
-  bool checked;
-  // late RxBool check = true.obs;
-  /// 错误stream
-  BehaviorSubject<bool> check = BehaviorSubject.seeded(false);
-  final Function(bool)? checkCall;
-  final String? value;
-
-  ECCheckCellItem(this.title,
-      {this.checked = true, this.checkCall, this.value}) {
+  ECCheckCellItem(
+    this.title, {
+    this.checked = true,
+    this.checkCall,
+    this.value,
+  }) {
     check.value = checked;
   }
+
+  /// 标题
+  final String title;
+
+  /// 是否勾选
+  bool checked;
+
+  /// 错误stream
+  BehaviorSubject<bool> check = BehaviorSubject.seeded(false);
+
+  /// 勾选动作的回调
+  final Function(bool)? checkCall;
+
+  /// 拓展值
+  final String? value;
 }
 
 class ECCheckBoxList extends StatelessWidget {
@@ -36,17 +47,12 @@ class ECCheckBoxList extends StatelessWidget {
                   title: e.title,
                   isLast: spaceBetween ? true : e.title == checks.last.title,
                   checkCall: ((p0) {
-                    if (e.checkCall != null) {
-                      e.checkCall!(p0);
-                    }
+                    e.checkCall?.call(p0);
+
                     for (var checkItem in checks) {
-                      if (checkItem.title == e.title) {
-                        checkItem.check.value = true;
-                        checkItem.checked = true;
-                      } else {
-                        checkItem.check.value = false;
-                        checkItem.checked = false;
-                      }
+                      final isCheck = checkItem.title == e.title;
+                      checkItem.check.value = isCheck;
+                      checkItem.checked = isCheck;
                     }
                   }),
                 ))))

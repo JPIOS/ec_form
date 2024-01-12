@@ -1,19 +1,16 @@
 name: ec_form
 description: 一个flutter表单组件，主要用于处理表单提交业务。
-version: 1.0.0
+version: 1.1.0
 homepage:  https://github.com/JPIOS/ec_form
 
 environment:
-  # sdk: '>2.17.0 <3.0.0'
-  sdk: '>=2.18.2 <3.0.0'
+  sdk: '>=2.18.2 <4.0.0'
 dependencies:
   flutter:
     sdk: flutter
   ec_adapter: ^1.1.0
   date_format: ^2.0.7
-  rxdart: ^0.27.7
-  # image_picker: ^0.8.6
-  # camera: ^0.10.0+4
+  rxdart: ^0.27.7 
   
 
 dev_dependencies:

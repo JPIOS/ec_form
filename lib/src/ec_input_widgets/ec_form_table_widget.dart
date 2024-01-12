@@ -18,21 +18,12 @@ class ECFormTableCell extends StatelessWidget
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              item.title == null
-                  ? Container()
-                  : Text(
-                      item.title!,
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: ECColor.title,
-                      ),
-                    ),
-              item.subTitle == null
-                  ? Container()
-                  : Text(
-                      item.subTitle!,
-                      style: TextStyle(fontSize: 14, color: ECColor.subTitle),
-                    ),
+              if (item.title != null)
+                Text(item.title!,
+                    style: TextStyle(fontSize: 14, color: ECColor.title)),
+              if (item.subTitle != null)
+                Text(item.subTitle!,
+                    style: TextStyle(fontSize: 14, color: ECColor.subTitle)),
             ],
           ),
           const SizedBox(height: 8),
@@ -44,12 +35,25 @@ class ECFormTableCell extends StatelessWidget
 }
 
 class ECFormTableCellVM with ListViewItemType {
+  /// 入参的key
   final String? paramKey;
+
+  /// 标题
   final String? title;
+
+  /// 子标题
   final String? subTitle;
+
+  /// tab的标题数组
   final List<String> titles;
+
+  /// 头部高度
   final double headerHeight;
+
+  /// tab的rows数组
   final List<ECTableRow> rows;
+
+  /// 边距
   final EdgeInsets? padding;
 
   ECFormTableCellVM({
@@ -61,10 +65,13 @@ class ECFormTableCellVM with ListViewItemType {
     this.padding,
     this.paramKey,
   });
+
+  /// 添加 row
   add(ECTableRow row) {
     rows.add(row);
   }
 
+  /// 移除 row
   remove(ECTableRow row) {
     if (rows.contains(row)) {
       rows.remove(row);

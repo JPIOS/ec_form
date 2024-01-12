@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'ec_color.dart';
-import 'ec_text_filed.dart';
 import 'package:rxdart/rxdart.dart';
+import 'ec_text_filed.dart';
+import 'ec_color.dart';
 
 class ECTableRow {
   final List<ECTableRowItem> items;
@@ -9,33 +9,6 @@ class ECTableRow {
 }
 
 class ECTableRowItem {
-  /// 是否是显示模式
-  final bool isInput;
-
-  /// 显示标题
-  String title;
-
-  /// 标题颜色
-  final Color? titleColor;
-
-  /// 单位
-  /// isInput默认一般会存在
-  final String? inputUnit;
-  final String? paramKey;
-
-  /// 输入的文字
-  String? inputText;
-  late final TextEditingController controller = TextEditingController();
-
-  /// 如果是disable则会有灰色的背景
-  bool enable;
-  final Function(ECTableRowItem)? didSelect;
-  // Rx<String> selectValue = "请选择".obs;
-  BehaviorSubject<String> selectValue = BehaviorSubject.seeded("请选择");
-  final Function(String)? inputChange;
-
-  /// 输入类型、选择类型谨慎使用
-  String Function()? valueCall;
   ECTableRowItem({
     this.paramKey,
     this.isInput = false,
@@ -50,14 +23,44 @@ class ECTableRowItem {
     controller.text = title;
     inputText = title;
   }
+
+  /// 是否是显示模式
+  final bool isInput;
+
+  /// 显示标题
+  String title;
+
+  /// 标题颜色
+  final Color? titleColor;
+
+  /// 单位
+  /// isInput默认一般会存在
+  final String? inputUnit;
+
+  /// 表单参数key
+  final String? paramKey;
+
+  /// 输入的文字
+  String? inputText;
+  late final TextEditingController controller = TextEditingController();
+
+  /// 如果是disable则会有灰色的背景
+  bool enable;
+
+  /// 选择类型：选中了一个 row
+  final Function(ECTableRowItem)? didSelect;
+
+  /// Rx<String> selectValue = "请选择".obs;
+  BehaviorSubject<String> selectValue = BehaviorSubject.seeded("请选择");
+
+  /// 当输入类型，数据文字变化的回调
+  final Function(String)? inputChange;
+
+  /// 输入类型：选择类型谨慎使用
+  String Function()? valueCall;
 }
 
 class ECTable extends StatelessWidget {
-  final List<String> titles;
-  final double headerHeight;
-  final List<ECTableRow> rows;
-  final double firstRato;
-
   const ECTable.div({
     super.key,
     required this.titles,
@@ -66,6 +69,17 @@ class ECTable extends StatelessWidget {
     this.firstRato = 1,
   });
 
+  /// 标题数组
+  final List<String> titles;
+
+  /// 表头部高度
+  final double headerHeight;
+
+  /// row 数组
+  final List<ECTableRow> rows;
+
+  /// 头部宽高比例：控制tab头部
+  final double firstRato;
   @override
   Widget build(BuildContext context) {
     return Table(
@@ -155,18 +169,14 @@ class ECTable extends StatelessWidget {
                   controller: item.controller,
                   onChanged: ((p0) {
                     item.inputText = p0;
-                    if (item.inputChange != null) {
-                      item.inputChange!(p0);
-                    }
+                    item.inputChange?.call(p0);
                   }),
                   style: const TextStyle(fontSize: 14))),
           Text(
             item.inputUnit ?? "",
             style: TextStyle(fontSize: 14, color: ECColor.title),
           ),
-          const SizedBox(
-            width: 16,
-          ),
+          const SizedBox(width: 16),
         ],
       ),
     );

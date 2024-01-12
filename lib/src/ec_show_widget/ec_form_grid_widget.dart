@@ -20,10 +20,19 @@ class ECFormGridViewWidget extends StatelessWidget
 }
 
 class ECFormGridViewWidgetVM<Input> with ListViewItemType {
+  /// grad 模型
   final List<ECGridCellItem> items;
+
+  /// 列数
   final int crossAxisCount;
+
+  /// 列之间间距
   final double crossAxisSpacing;
+
+  /// grid的间距padding
   final EdgeInsets padding;
+
+  /// 行之间间距
   final double mainAxisSpacing;
 
   ECFormGridViewWidgetVM({

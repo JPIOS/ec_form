@@ -52,7 +52,6 @@ class ECGradView extends StatelessWidget {
   List<Widget> _childrenWidget() {
     return items
         .map((e) => Container(
-              // color: Colors.red,
               child: _cell(e),
             ))
         .toList();

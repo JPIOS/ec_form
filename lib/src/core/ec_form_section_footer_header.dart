@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:ec_adapter/ec_adapter.dart';
+import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class ECFormSectionFooterHeaderWidget extends StatelessWidget

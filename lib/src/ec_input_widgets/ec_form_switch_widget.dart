@@ -1,10 +1,10 @@
-import 'package:ec_adapter/ec_adapter.dart';
 import 'package:flutter/cupertino.dart' show CupertinoSwitch;
+import '../core/ec_form_base_widget_vm.dart';
+import 'package:ec_adapter/ec_adapter.dart';
+import '../core/ec_form_base_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
 import '../core/ec_color.dart';
-import '../core/ec_form_base_widget.dart';
-import '../core/ec_form_base_widget_vm.dart';
 
 /// switch开关组件
 // ignore: must_be_immutable
@@ -20,38 +20,30 @@ class ECFormSwitchWidget extends StatelessWidget
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(item.title ?? "",
-                  style: TextStyle(
-                      color: ECColor.title, fontSize: item.titleFont ?? 16)),
-              StreamBuilder<bool>(
-                  stream: item.changeStream,
-                  initialData: item.open,
-                  builder: ((context, snapshot) {
-                    return CupertinoSwitch(
-                        value: item.open,
-                        activeColor: ECColor.main,
-                        onChanged: ((value) {
-                          item.open = value;
-                          item.changeStream.add(item.open);
-                          if (item.changeCall != null) {
-                            item.changeCall!(value);
-                          }
-                        }));
-                  }))
-            ],
-          ),
-          SizedBox(
-            height: item.subTitle != null ? 8 : 0,
-          ),
-          item.subTitle == null
-              ? Container()
-              : Text(
-                  item.subTitle ?? "",
-                  style: TextStyle(fontSize: 12, color: ECColor.place),
-                ),
+          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+            Text(item.title ?? "",
+                style: TextStyle(
+                    color: ECColor.title, fontSize: item.titleFont ?? 16)),
+            StreamBuilder<bool>(
+                stream: item.changeStream,
+                initialData: item.open,
+                builder: ((context, snapshot) {
+                  return CupertinoSwitch(
+                      value: item.open,
+                      activeColor: ECColor.main,
+                      onChanged: ((value) {
+                        item.open = value;
+                        item.changeStream.add(item.open);
+                        item.changeCall?.call(value);
+                      }));
+                }))
+          ]),
+          if (item.subTitle != null)
+            Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Text(item.subTitle ?? "",
+                  style: TextStyle(fontSize: 12, color: ECColor.place)),
+            ),
         ],
       ),
     );
@@ -59,11 +51,22 @@ class ECFormSwitchWidget extends StatelessWidget
 }
 
 class ECFormSwitchWidgetVM<Input> with ECFormBaseWidgetVM, ListViewItemType {
+  /// 子标题
   final String? subTitle;
+
+  /// 默认是否打开
   bool open;
+
+  /// switch切换的回调
   final Function(bool)? changeCall;
+
+  /// switch切换的订阅
   late BehaviorSubject<bool> changeStream;
+
+  /// 如果打开最终传入后台的值：影响 itemParam
   final dynamic openValue;
+
+  /// 如果关闭传入后台的值：影响 itemParam
   final dynamic closeValue;
 
   ECFormSwitchWidgetVM(
