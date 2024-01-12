@@ -1,6 +1,6 @@
 name: ec_form
 description: 一个flutter表单组件，主要用于处理表单提交业务。
-version: 1.1.0
+version: 1.1.1
 homepage:  https://github.com/JPIOS/ec_form
 
 environment:
