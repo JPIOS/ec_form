@@ -88,7 +88,6 @@ class ECTextFiled {
         style: style ?? const TextStyle(fontSize: 16),
         onChanged: onChanged,
         obscureText: obscureText,
-        enabled: enabled,
 
         // padding: EdgeInsets.all(16),
         placeholderStyle:

@@ -4,9 +4,7 @@ import 'package:flutter/services.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
-    SystemUiOverlayStyle.light.copyWith(
-      statusBarColor: Colors.transparent,
-    ),
+    SystemUiOverlayStyle.light.copyWith(statusBarColor: Colors.transparent),
   );
   runApp(const MyApp());
 }
@@ -17,9 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: ThemeData(primarySwatch: Colors.blue),
       home: _ECFormDemoPage(),
     );
   }
@@ -28,8 +24,6 @@ class MyApp extends StatelessWidget {
 // ignore: must_be_immutable
 class _ECFormDemoPage extends ECFormBasePage {
   _ECFormDemoPageVM vm = _ECFormDemoPageVM();
-
-  _ECFormDemoPage({super.key});
 
   @override
   String? get title => "表单提交";
@@ -56,7 +50,11 @@ class _ECFormDemoPageVM extends ECFormBasePageVM {
     datas.addAll([
       // 输入
       ECFormInputWidgetVM(
-          paramKey: 'name', value: "不可修改名字", title: '名字', enable: false),
+        paramKey: 'name',
+        value: "不可修改名字",
+        title: '名字',
+        enable: false,
+      ),
       ECFormInputWidgetVM(
         paramKey: 'name1',
         title: '名字',
@@ -67,10 +65,14 @@ class _ECFormDemoPageVM extends ECFormBasePageVM {
       ECFormDateSelectWidgetVM(paramKey: 'startDate', title: "出发时间"),
       ECFormDateSelectWidgetVM(paramKey: 'endDate', title: "到达时间"),
       // 选择
-      ECFormInputSelectWidgetVM(paramKey: 'cardId', title: "车子", selectList: [
-        ECFormInputSelectItem(name: "宝马", value: "475993"),
-        ECFormInputSelectItem(name: "奔驰", value: "976979")
-      ]),
+      ECFormInputSelectWidgetVM(
+        paramKey: 'cardId',
+        title: "车子",
+        selectList: [
+          ECFormInputSelectItem(name: "宝马", value: "475993"),
+          ECFormInputSelectItem(name: "奔驰", value: "976979"),
+        ],
+      ),
 
       // 选择(带单位)
       ECFormInputSelectUnitWidgetVM(
@@ -90,7 +92,7 @@ class _ECFormDemoPageVM extends ECFormBasePageVM {
         keyboardType: TextInputType.number,
         unitSelectList: [
           ECFormInputSelectItem(name: "吨", value: "1"),
-          ECFormInputSelectItem(name: "千克", value: "2")
+          ECFormInputSelectItem(name: "千克", value: "2"),
         ],
       ),
 
@@ -101,9 +103,37 @@ class _ECFormDemoPageVM extends ECFormBasePageVM {
         height: 100,
         maxLength: 50,
       ),
-      // 展示
 
-      ECFormSectionTitleWidgetVM(title: "大标题")
+      // 自定义选择
+      ECFormInputSelectCustomizeWidgetVM(
+        paramKey: "customize",
+        title: "自定义选择",
+        didClick: (p0) {
+          debugPrint("点击了自定义选择");
+        },
+      ),
+      // 开关
+      ECFormSwitchWidgetVM(title: "是否同意协议", paramKey: "isAgree", value: "1"),
+      // 展示
+      ECFormSectionTitleWidgetVM(title: "大标题"),
+      // 展示Table案例
+      ECFormTableCellVM(
+        title: "展示Table案例",
+        subTitle: "我是子标题",
+        titles: ["标题1", "标题2", "标题3"],
+        rows: [
+          ECTableRow([
+            ECTableRowItem(title: "row1-1"),
+            ECTableRowItem(title: "row1-2"),
+            ECTableRowItem(title: "row1-3"),
+          ]),
+          ECTableRow([
+            ECTableRowItem(title: "row2-1"),
+            ECTableRowItem(title: "row2-2"),
+            ECTableRowItem(title: "row2-3"),
+          ]),
+        ],
+      ),
     ]);
 
     update();
@@ -115,6 +145,6 @@ class _ECFormDemoPageVM extends ECFormBasePageVM {
     // 收集的参数param
     Map<String, dynamic> param = getParam();
 
-    print("收集的参数: ${param.toString()}");
+    debugPrint("收集的参数: ${param.toString()}");
   }
 }

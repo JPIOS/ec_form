@@ -43,12 +43,7 @@ class ECListSheet extends StatelessWidget {
     double height = (list.length + 1) * 60.0 + 20;
     height = min(height, 300);
 
-    return Container(
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(8), topRight: Radius.circular(8)),
-        ),
+    return SizedBox(
         height: height,
         child: ListView.separated(
             padding: const EdgeInsets.only(top: 10, bottom: 20),

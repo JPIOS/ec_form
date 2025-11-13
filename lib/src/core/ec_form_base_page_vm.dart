@@ -22,7 +22,7 @@ class ECFormBasePageVM {
   }
 
   ECFormBasePageVM() {
-    adapter = ListViewAdapter(pageController: this);
+    adapter = ListViewAdapter(pageVM: this);
   }
 
   /// 更新全部组件

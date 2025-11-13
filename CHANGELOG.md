@@ -9,3 +9,6 @@
 * - ECFormTableCellVM: tabble 表格组件
 * - ECFormInputSelectWidgetVM: 选择组件
 * - ECFormInputSelectUnitWidgetVM: 后面可带单位的选择组件
+
+* 1.1.3 
+* - 新增截图和组件说明

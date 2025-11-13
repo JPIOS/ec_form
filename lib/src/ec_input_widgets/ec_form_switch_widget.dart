@@ -32,7 +32,7 @@ class ECFormSwitchWidget extends StatelessWidget
                   builder: ((context, snapshot) {
                     return CupertinoSwitch(
                         value: item.open,
-                        activeColor: ECColor.main,
+                        activeTrackColor: ECColor.main,
                         onChanged: ((value) {
                           item.open = value;
                           item.changeStream.add(item.open);
